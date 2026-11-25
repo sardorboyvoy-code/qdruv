@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4a90d9" />
+  <meta name="description" content="Tovarlar bo'yicha tezkor qidiruv" />
+
+  <title>Tovarlar Qidiruvi</title>
+
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a90d9'/%3E%3Ccircle cx='28' cy='28' r='12' fill='none' stroke='white' stroke-width='4'/%3E%3Cline x1='37' y1='37' x2='50' y2='50' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a90d9'/%3E%3Ccircle cx='28' cy='28' r='12' fill='none' stroke='white' stroke-width='4'/%3E%3Cline x1='37' y1='37' x2='50' y2='50' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+             stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+        </svg>
+      </div>
+      <div class="header-text">
+        <h1>Tovarlar Qidiruvi</h1>
+        <p class="subtitle">Tezkor va oson qidiruv</p>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="filter-row">
+        <div class="filter-item">
+          <label class="filter-label" for="turFilter">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M3 5h18M6 12h12M10 19h4"></path>
+            </svg>
+            Tur
+          </label>
+          <select id="turFilter" class="select">
+            <option value="">Barcha turlar</option>
+          </select>
+        </div>
+
+        <div class="filter-item">
+          <label class="filter-label" for="modelFilter">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <rect x="3" y="7" width="18" height="12" rx="2"></rect>
+              <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+            Model
+          </label>
+          <select id="modelFilter" class="select">
+            <option value="">Barcha modellar</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="search-grid">
+        <div class="search-wrap">
+          <label class="search-label" for="codeInput">Model kodi</label>
+          <div class="input-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M4 7V5a2 2 0 0 1 2-2h2M16 3h2a2 2 0 0 1 2 2v2M20 17v2a2 2 0 0 1-2 2h-2M8 21H6a2 2 0 0 1-2-2v-2"></path>
+            </svg>
+            <input type="text" id="codeInput" class="search-box"
+                   placeholder="Masalan: SM-A325" autocomplete="off" spellcheck="false" />
+          </div>
+        </div>
+
+        <div class="search-wrap">
+          <label class="search-label" for="markaModelInput">Marka va Model</label>
+          <div class="input-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="8" r="4"></circle>
+              <path d="M4 21v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2"></path>
+            </svg>
+            <input type="text" id="markaModelInput" class="search-box"
+                   placeholder="Masalan: sam a32" autocomplete="off" spellcheck="false" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="errorState" class="error" hidden></div>
+
+    <div id="loadingState" class="loading">
+      <span class="spinner"></span>
+      <span>Ma'lumotlar yuklanmoqda...</span>
+    </div>
+
+    <div id="summary" class="summary" hidden>
+      <div class="summary-card">
+        <div class="summary-icon summary-icon-blue">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M9 11l3 3L22 4"></path>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+        </div>
+        <div class="summary-body">
+          <span class="summary-label">Natijalar</span>
+          <div class="summary-row">
+            <span class="summary-value" id="countResult">0</span>
+            <span class="summary-unit">ta</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-icon summary-icon-green">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"></path>
+          </svg>
+        </div>
+        <div class="summary-body">
+          <span class="summary-label">Umumiy miqdor</span>
+          <div class="summary-row">
+            <span class="summary-value" id="countSoni">0</span>
+            <span class="summary-unit">dona</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ul id="resultList" class="result-list"></ul>
+
+    <div id="emptyState" class="empty" hidden>
+      <svg viewBox="0 0 24 24" width="56" height="56" fill="none"
+           stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <circle cx="11" cy="11" r="7"></circle>
+        <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+        <line x1="8" y1="11" x2="14" y2="11"></line>
+      </svg>
+      <p>Mos keladigan natija topilmadi</p>
+      <span>Boshqa kalit so'z yoki filtr bilan urinib ko'ring</span>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
