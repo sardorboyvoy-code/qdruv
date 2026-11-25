@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uz" data-tema="tungi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0e14">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Do'kon — Qidiruv</title>
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<header class="yuqori">
+  <div class="yuqori-chap">
+    <span class="logo">▣</span>
+    <h1>DO'KON</h1>
+  </div>
+  <div class="yuqori-ong">
+    <button id="tema-tugma" class="icon-btn" title="Tema">🌙</button>
+    <span id="soat" class="soat">--:--</span>
+  </div>
+</header>
+
+<main class="asosiy">
+
+  <!-- QIDIRUV -->
+  <section class="bolim">
+    <div class="qidiruv-qator">
+      <input type="text" id="q-input" class="input qidiruv-input"
+             placeholder="Kod, model yoki marka..." autocomplete="off">
+      <button id="q-tozalash" class="icon-btn" title="Tozalash">✕</button>
+    </div>
+    
+  </section>
+
+  <!-- FILTRLAR -->
+  <section class="bolim">
+    <h2 class="bolim-sarlavha">FILTRLAR</h2>
+    <div class="filtr-grid">
+      <div>
+        <label class="label">Tavar turi</label>
+        <select id="f-tur" class="input">
+          <option value="">— Barchasi —</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">Telefon modeli</label>
+        <select id="f-model" class="input">
+          <option value="">— Barchasi —</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">Telefon markasi</label>
+        <select id="f-marka" class="input">
+          <option value="">— Barchasi —</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+ <!-- NATIJA SARLAVHASI -->
+<div id="natija-sarlavha" class="natija-sarlavha gizli">
+  <span id="natija-soni">0 ta natija</span>
+</div>
+
+  <!-- NATIJALAR -->
+  <section class="bolim">
+    <div class="jadval-wrap">
+      <table class="jadval">
+        <thead>
+          <tr>
+            <th>Kodi</th>
+            <th>Model / Marka</th>
+            <th class="markaz">Soni</th>
+            <th class="ong">Sotuv narxi</th>
+          </tr>
+        </thead>
+        <tbody id="natija-tbody">
+          <tr><td colspan="4" class="bosh">Qidiruvni boshlang...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
